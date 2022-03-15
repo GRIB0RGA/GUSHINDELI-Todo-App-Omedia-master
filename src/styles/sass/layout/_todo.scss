@@ -1,0 +1,143 @@
+.todo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 5rem;
+
+  &__type {
+    align-self: flex-start;
+    &--to-do {
+      border: 2px solid $color-blue;
+    }
+    &--in-progress {
+      border: 2px solid cyan;
+    }
+    &--done {
+      border: 2px solid $color-green;
+    }
+  }
+  &__title-container {
+    display: flex;
+
+    gap: 1rem;
+    background-color: $color-gray;
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+  &__menu {
+    align-self: center;
+  }
+  &__title {
+    padding-bottom: 0.2rem;
+  }
+
+  &__items-container {
+    @include flexColumnGap(2rem);
+    justify-content: center;
+    min-height: 5rem;
+    padding: 1rem;
+  }
+
+  &__item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    font-size: 1.3rem;
+    padding: 1rem;
+    border: 1px solid $color-gray;
+  }
+  &__icons-container {
+    align-self: flex-start;
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+  }
+
+  &__text-side {
+    @include flexColumnGap(0.5rem);
+  }
+  &__task {
+    font-size: 1.4rem;
+    display: inline;
+    line-break: anywhere;
+  }
+  &__difficulty {
+    align-self: flex-start;
+    padding: 0 0.8rem;
+    border-radius: 0.3rem;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 700;
+
+    &--easy {
+      background-color: #00b712;
+      background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+    }
+    &--medium {
+      background-color: #045de9;
+      background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+    }
+    &--hard {
+      background-color: #42378f;
+      background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
+    }
+  }
+  &__icon {
+    @include widthAndHeight(3rem, 3rem);
+    @include flexAlignAndJustifyCenter;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &--x {
+      background-color: $color-red;
+    }
+    &--arrow-right {
+      background-color: $color-green;
+    }
+    &--arrow-left {
+      background-color: $color-blue;
+    }
+  }
+
+  &__add-container {
+    @include flexRowGap(3rem);
+  }
+
+  &__input {
+    padding-left: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: 2px solid $color-gray;
+    outline: none;
+  }
+  &__edit {
+    width: 80%;
+    padding: 0.5rem 1rem;
+    border: 2px solid $color-gray;
+    outline: none;
+  }
+  &__difficulty-dropdown {
+    border: 2px solid $color-gray;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    outline: none;
+  }
+  &__empty {
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.445);
+    font-weight: 700;
+  }
+}

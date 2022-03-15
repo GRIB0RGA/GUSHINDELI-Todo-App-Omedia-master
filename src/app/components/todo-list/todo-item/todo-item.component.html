@@ -1,0 +1,30 @@
+<div class="todo__item">
+
+
+    <div class="todo__text-side">
+        <p class="todo__task" *ngIf="!todoItem.editing; else editingTodo" (dblclick)="editTodo(todoItem)">
+            {{todoIndex+1}}.
+            {{todoItem.title}}</p>
+
+
+        <ng-template #editingTodo>
+            <input type="text" class="todo__edit" (blur)="doneTodoEdit(todoItem)" (keyup.enter)="doneTodoEdit(todoItem)"
+                (keyup.escape)="cancelTodoEdit(todoItem)" [(ngModel)]="todoItem.title">
+        </ng-template>
+
+
+        <p class="todo__difficulty" [ngClass]="getDifficultyStyle(todoItem.difficulty)"
+            [ngClass]="getDifficultyStyle(todoItem.difficulty)" [ngClass]="getDifficultyStyle(todoItem.difficulty)">
+            {{todoItem.difficulty}}</p>
+    </div>
+
+
+    <div class="todo__icons-container">
+        <i class="fa-solid fa-angle-left todo__icon todo__icon--arrow-left"
+            *ngIf="todoItem.inProgress || todoItem.completed" (click)="updateProgress('regress')"></i>
+        <i class="fa-solid fa-angle-right todo__icon todo__icon--arrow-right" [ngClass]="getButtonStyle('blue')"
+            *ngIf="!todoItem.completed" (click)="updateProgress('progress')"></i>
+        <i class=" fa-solid fa-x todo__icon todo__icon--x" *ngIf="!todoItem.inProgress && !todoItem.completed"
+            (click)="deleteItem(todoItem)"></i>
+    </div>
+</div>

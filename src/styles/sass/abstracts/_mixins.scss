@@ -1,0 +1,225 @@
+//! FLEX MIXINS \\\
+
+//? FLEX ROW \\
+@mixin flexRowGap($gap) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin flexAlignCenter {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flexAlignCenterWithGap($gap) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin flexAlignAndJustifyCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flexAlignAndJustifyCenterWithGap($gap) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+//? FLEX COLUMN \\
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexColumnGap($gap) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin flexColumnReverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin flexColumnAlignCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin flexColumnAlignCenterWithGap($gap) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin alignSelfItemsTextCenter {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+/////////////////////////////////////
+
+//! WIDTH AND HEIGHTS \\\
+@mixin widthAndHeight($width, $height) {
+  width: $width;
+  height: $height;
+}
+@mixin sameWidthAndHeight($num) {
+  width: $num;
+  height: $num;
+}
+
+//! POSITION ABSOLUTE \\\
+@mixin positionAbsoluteTopLeft($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+@mixin positionAbsoluteTopRight($top, $right) {
+  position: absolute;
+  top: $top;
+  right: $right;
+}
+
+@mixin positionAbsoluteTopLeftRight($top, $left, $right) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+}
+
+@mixin topLeft($top, $left) {
+  top: $top;
+  left: $left;
+}
+
+@mixin absoluteMiddle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//! POSITION FIXED \\\
+@mixin positionFixedTopLeft($top, $left) {
+  position: fixed;
+  top: $top;
+  left: $left;
+}
+
+//! BACKGROUND IMAGE \\\
+@mixin backgroundImageWithCustomGradient($color, $image) {
+  background-image: linear-gradient(315deg, $color 0%, $color 100%), url($image);
+}
+
+@mixin backgroundSizeAndPosition($size, $position) {
+  background-size: $size;
+  background-position: $position;
+}
+
+//! OTHER RANDOM HELPERS \\\
+
+@mixin headerMixin($fontSize, $lineHeight, $letterSpacing) {
+  @extend .heading;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
+}
+
+@mixin makeHeader($height) {
+  display: flex;
+  justify-content: center;
+  height: $height;
+}
+
+@mixin seeProductBtnMaker($BGcolor, $color) {
+  background-color: $BGcolor;
+  color: $color;
+}
+
+@mixin linksAndBtn {
+  font-family: "Manrope", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  letter-spacing: 0.2rem;
+  color: $color-tertiary;
+}
+
+@mixin backgroundWithCustomGradient($col1, $col2, $colorOpacity, $img) {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($col1, $colorOpacity),
+      rgba($col2, $colorOpacity)
+    ),
+    url($img);
+}
+
+@mixin importAndAdjustBackground($url, $x, $y) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: $x $y;
+}
+
+@mixin applyGapOnH2PButton {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+//! @@@ MEDIA @@@   MIXINS \\\
+
+//69.3 rem 1110px desktop
+//49 em 784px tablet
+//54 em 864px tablet-big
+//40 em 640px phone-rotated
+//31 em 496px phone
+//24 em 384px phone-small
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone-small {
+    @media (max-width: 24em) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone {
+    @media (max-width: 31em) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone-rotated {
+    @media (max-width: 40em) {
+      @content;
+    }
+  }
+  @if $breakpoint == min-tablet {
+    @media (min-width: 49.1em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: 49em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tablet-big {
+    @media (max-width: 54em) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (max-width: 69.3em) {
+      @content;
+    }
+  }
+}

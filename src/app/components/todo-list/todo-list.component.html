@@ -1,0 +1,53 @@
+<div class="todo__add-container">
+    <input type="text" class="todo__input" placeholder="Task Name" [(ngModel)]="title">
+
+    <select name="difficulty" id="difficulty" class="todo__difficulty-dropdown" [(ngModel)]="selectedOption">
+        <option selected [ngValue]="''" hidden>Select</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
+
+    <button class="btn__primary" (click)="onAddClick()">Add</button>
+</div>
+
+<div class="todo">
+    <div class="todo__type todo__type--to-do">
+        <div class="todo__title-container">
+            <i class="fa-solid fa-bars todo__menu"></i>
+            <p class="todo__title ">To-do</p>
+        </div>
+
+        <div class="todo__items-container">
+            <p class="todo__empty" *ngIf="justTodo().length===0">List is empty</p>
+            <app-todo-item *ngFor="let todo of justTodo(); let i = index" [todoIndex]="i" [todoItem]="todo"
+                (sendItemToDelete)="deleteTodo($event)"></app-todo-item>
+        </div>
+    </div>
+
+    <div class="todo__type todo__type--in-progress">
+        <div class="todo__title-container">
+            <i class="fa-solid fa-bars todo__menu"></i>
+            <p class="todo__title ">In Progress</p>
+        </div>
+
+        <div class="todo__items-container">
+            <p class="todo__empty" *ngIf="todosInProgress().length===0">List is empty</p>
+            <app-todo-item *ngFor="let todo of todosInProgress() ; let i = index" [todoIndex]="i" [todoItem]="todo"
+                [todoItem]="todo"></app-todo-item>
+        </div>
+    </div>
+
+    <div class="todo__type todo__type--done">
+        <div class="todo__title-container">
+            <i class="fa-solid fa-bars todo__menu"></i>
+            <p class="todo__title ">Done</p>
+        </div>
+        <div class="todo__items-container">
+            <p class="todo__empty" *ngIf="todosCompleted().length===0">List is empty</p>
+            <app-todo-item *ngFor="let todo of todosCompleted() ; let i = index" [todoIndex]="i" [todoItem]="todo"
+                [todoItem]="todo"></app-todo-item>
+        </div>
+    </div>
+
+</div>

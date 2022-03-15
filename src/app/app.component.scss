@@ -1,0 +1,21 @@
+.container {
+  max-width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  
+}
+
+.text {
+  font-size: 1.6rem;
+}
+
+app-todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 2rem;
+  
+}
